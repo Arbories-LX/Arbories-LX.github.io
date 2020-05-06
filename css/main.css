@@ -622,6 +622,7 @@ a.beian-police img {
   background-color: initial;
 }
 .list-group-item {
+  background-color: transparent;
   border: 0;
 }
 .page-link {
@@ -1331,6 +1332,7 @@ mjx-container svg:focus {
 .links .card {
   box-shadow: none;
   min-width: 33%;
+  background-color: transparent;
   border: 0;
 }
 .links .card-body {
