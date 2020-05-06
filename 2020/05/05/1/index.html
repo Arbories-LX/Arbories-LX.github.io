@@ -276,6 +276,29 @@
   
 
   
+    <!-- APlayer 音乐播放器 -->
+    <div id="aplayer"></div>
+    <script defer src="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.js" ></script>
+<link  rel="stylesheet" href="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.css" />
+<script type="text/javascript">
+  var oldLoadAp = window.onload;
+  window.onload = function () {
+    oldLoadAp && oldLoadAp();
+
+    new APlayer({
+      container: document.getElementById('aplayer'),
+      fixed: true,
+      autoplay: 'false' === 'true',
+      loop: 'all',
+      order: 'random',
+      theme: '#b7daff',
+      preload: 'none',
+      audio: [{"name":"Wake Me Up","artist":"2Cellos & Luka Sulic","url":"/songs/Wake Me Up - 2Cellos,Luka Sulic,HAUSER.mp3","cover":"https://s1.ax1x.com/2020/05/06/YkOhAP.md.jpg"}]
+    });
+  }
+</script>
+
+  
 
   
 
