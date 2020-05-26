@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="Arbories-LX">
   <meta name="keywords" content="">
-  <title>标签 - Zhang_suzhan&#39;s</title>
+  <title>MySql JDBC - Zhang_suzhan&#39;s</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
@@ -110,7 +110,7 @@
 </nav>
 
     <div class="view intro-2" id="background" parallax=true
-         style="background: url('https://cdn.jsdelivr.net/gh/Arbories-LX/img-cdn/Yk1HqH.jpg') no-repeat center center;
+         style="background: url('https://cdn.jsdelivr.net/gh/Arbories-LX/img-cdn/YE5uTS.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -119,6 +119,38 @@
               
             </span>
 
+            
+              
+                <div class="mt-3 post-meta">
+                  <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+                  <time datetime="2020-05-26 10:11">
+                    2020年5月26日 10:11:29
+                  </time>
+                </div>
+              
+
+              <div class="mt-1">
+                
+                  
+                  <span class="post-meta mr-2">
+                    <i class="iconfont icon-chart"></i>
+                    644 字
+                  </span>
+                
+
+                
+                  
+                  <span class="post-meta mr-2">
+                      <i class="iconfont icon-clock-fill"></i>
+                    
+                    
+                    10
+                     分钟
+                  </span>
+                
+
+                
+              </div>
             
           </div>
 
@@ -130,24 +162,132 @@
 
   <main>
     
-      <div class="container nopadding-md">
-        <div class="py-5" id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <h1 id="JDBC-MySQL"><a href="#JDBC-MySQL" class="headerlink" title="JDBC  MySQL"></a>JDBC  MySQL</h1><p><strong>1.</strong> 概念：Java DataBase Connectivity  Java 数据库连接， Java语言操作数据库<br>    JDBC本质：其实是官方（sun公司）定义的一套操作所有关系型数据库的规则，即接口。各个数据库厂商去实现这套接口，提供数据库驱动jar包。我们可以使用这套接口（JDBC）编程，真正执行的代码是驱动jar包中的实现类。</p>
+<p><strong>2.</strong> 快速入门：<br>    步骤：<br>        1. 新建一个libs文件夹，导入驱动jar包 <strong>mysql-connector-java-8.0.17.jar</strong><br>        2. 复制mysql-connector-java-5.1.37-bin.jar到项目的libs目录下<br>        3. 右键–&gt;Add As Library<img src="https://cdn.jsdelivr.net/gh/Arbories-LX/img-cdn/MYSQL.png" srcset="/img/loading.gif" alt="在这里插入图片描述"><br>        4. 注册驱动<br>        5. 获取数据库连接对象 Connection<br>        6. 定义sql<br>        7. 获取执行sql语句的对象 Statement<br>        8. 执行sql，接受返回结果<br>        9. 处理结果<br>        10. 释放资源</p>
+<p><strong>代码实现：</strong></p>
+<pre><code class="hljs java"><span class="hljs-comment">//1. 导入驱动jar包</span>
+      <span class="hljs-comment">//2.注册驱动</span>
+      Class.forName(<span class="hljs-string">"com.mysql.cj.jdbc.Driver"</span>);
+      <span class="hljs-comment">//3.获取数据库连接对象</span>
+      Connection conn = DriverManager.getConnection(<span class="hljs-string">"jdbc:mysql://localhost/要修改的数据库?useSSL=false&amp;serverTimezone=GMT"</span>, <span class="hljs-string">"你的用户名"</span>, <span class="hljs-string">"你的密码"</span>);
+      <span class="hljs-comment">//4.定义sql语句</span>
+      String sql = <span class="hljs-string">"update account set balance = 500 where id = 1"</span>;
+      <span class="hljs-comment">//5.获取执行sql的对象 Statement</span>
+      Statement stmt = conn.createStatement();
+      <span class="hljs-comment">//6.执行sql</span>
+      <span class="hljs-keyword">int</span> count = stmt.executeUpdate(sql);
+      <span class="hljs-comment">//7.处理结果</span>
+      System.out.println(count);
+      <span class="hljs-comment">//8.释放资源</span>
+      stmt.close();
+      conn.close();</code></pre>
+<p><strong>3. 详解各个对象：</strong></p>
+<ol>
+<li><p>DriverManager：驱动管理对象</p>
+<pre><code>功能：1. 注册驱动：告诉程序该使用哪一个数据库驱动jar
+        **注意：mysql5之后的驱动jar包可以省略注册驱动的步骤**</code></pre></li>
+<li><p>获取数据库连接：<br>方法：</p>
+<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">static</span> Connection <span class="hljs-title">getConnection</span><span class="hljs-params">(String url, String user, String password)</span></span></code></pre>
+<pre><code>参数：
+        * url：指定连接的路径
+        * 语法：jdbc:mysql://ip地址(域名):端口号/数据库名称
+        * 例子：jdbc:mysql://localhost:3306/db3
+        * 细节：如果连接的是本机mysql服务器，并且mysql服务默认端口是3306，则url可以简写为：jdbc:mysql:///数据库名称
+        * user：用户名
+        * password：密码 </code></pre></li>
+<li><p>Connection：数据库连接对象</p>
+<ol>
+<li>功能：<pre><code>获取执行sql 的对象
+   * Statement createStatement()
+   * PreparedStatement prepareStatement(String sql)  </code></pre></li>
+<li>管理事务：<pre><code>* 开启事务：setAutoCommit(boolean autoCommit) ：调用该方法设置参数为false，即开启事务
+* 提交事务：commit() 
+* 回滚事务：rollback() </code></pre></li>
+</ol>
+</li>
+<li><p>Statement：执行sql的对象<br>执行sql</p>
+<ol>
+<li>boolean execute(String sql) ：可以执行任意的sql 了解 <pre><code>2. int executeUpdate(String sql) ：执行DML（insert、update、delete）语句、DDL(create，alter、drop)语句
+    * 返回值：影响的行数，可以通过这个影响的行数判断DML语句是否执行成功 返回值&gt;0的则执行成功，反之，则失败。
+3. ResultSet executeQuery(String sql)  ：执行DQL（select)语句</code></pre></li>
+</ol>
+</li>
+</ol>
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
                 
-
-<div class="text-center tagcloud">
-  <a href="/tags/First/" style="font-size: 20px; color: #bbe">First</a> <a href="/tags/Fluid/" style="font-size: 20px; color: #bbe">Fluid</a> <a href="/tags/JDBC/" style="font-size: 20px; color: #bbe">JDBC</a> <a href="/tags/JavaWeb/" style="font-size: 20px; color: #bbe">JavaWeb</a>
-</div>
-
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/JDBC/">JDBC</a>
+                    
+                  </div>
+                
               </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2020/05/12/2/">
+                        <span class="hidden-mobile">Servlet</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
             </div>
+
+            
           </div>
         </div>
       </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+  <div class="col-lg-7 mx-auto nopadding-md">
+    <div class="container custom post-content mx-auto">
+      <img src="https://cdn.jsdelivr.net/gh/Arbories-LX/img-cdn/github2.png" srcset="/img/loading.gif" class="rounded mx-auto d-block mt-5" style="width:150px; height:150px;">
+    </div>
+  </div>
+
+
     
   </main>
 
@@ -260,6 +400,34 @@
 
 
 
+  
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '.post-content',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 6,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
 
 
   <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
@@ -281,7 +449,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "标签&nbsp;",
+        "MySql JDBC&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
@@ -324,6 +492,20 @@
   </script>
 
 
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
 
 
 
