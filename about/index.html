@@ -254,9 +254,10 @@
   <div class="text-center py-3">
     <div>
       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
-      <i class="iconfont icon-love"></i>
+      <!--<i class="iconfont icon-love"></i>-->
+      <i class="iconfont icon-bug"></i>
       <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
-        <span>Fluid</span></a>
+      <span>Fluid</span></a>
     </div>
     
   <div>
@@ -311,7 +312,16 @@
     }
     setInterval("createtime()",250);
     </script>
-
+    <p id="hitokoto">:D 获取中...</p>
+    <script>
+     fetch('https://v1.hitokoto.cn')
+    .then(response => response.json())
+    .then(data => {
+      const hitokoto = document.getElementById('hitokoto')
+      hitokoto.innerText = data.hitokoto
+      })
+      .catch(console.error)
+    </script>
   </div>
 </footer>
 
