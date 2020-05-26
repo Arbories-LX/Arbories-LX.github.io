@@ -1,11 +1,3 @@
-// 监听滚动事件
-function listenScroll(callback) {
-  // eslint-disable-next-line no-undef
-  const dbc = new Debouncer(callback);
-  window.addEventListener('scroll', dbc, false);
-  dbc.handleEvent();
-}
-
 // 滚动到指定元素
 function scrollToElement(target, offset) {
   var scroll_offset = $(target).offset();
@@ -15,29 +7,39 @@ function scrollToElement(target, offset) {
   });
 }
 
+// 防抖动函数
+function debounce(func, wait, immediate) {
+  var timeout;
+  return function() {
+    var context = this;
+    var args = arguments;
+    var later = function() {
+      timeout = null;
+      if (!immediate) func.apply(context, args);
+    };
+    var callNow = immediate && !timeout;
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+    if (callNow) func.apply(context, args);
+  };
+}
+
 // 顶部菜单的监听事件
 function navbarScrollEvent() {
   var navbar = $('#navbar');
-  var submenu = $('#navbar .dropdown-menu');
   if (navbar.offset().top > 0) {
     navbar.addClass('navbar-custom');
     navbar.removeClass('navbar-dark');
-    submenu.addClass('navbar-custom');
-    submenu.removeClass('navbar-dark');
   }
-  listenScroll(function() {
-    navbar[navbar.offset().top > 50 ? 'addClass' : 'removeClass']('top-nav-collapse');
-    submenu[navbar.offset().top > 50 ? 'addClass' : 'removeClass']('dropdown-collapse');
+  $(window).scroll(debounce(function() {
+    $('.scrolling-navbar')[navbar.offset().top > 50 ? 'addClass' : 'removeClass']('top-nav-collapse');
     if (navbar.offset().top > 0) {
       navbar.addClass('navbar-custom');
       navbar.removeClass('navbar-dark');
-      submenu.addClass('navbar-custom');
-      submenu.removeClass('navbar-dark');
     } else {
       navbar.addClass('navbar-dark');
-      submenu.removeClass('navbar-dark');
     }
-  });
+  }, 20));
   $('#navbar-toggler-btn').on('click', function() {
     $('.animated-icon').toggleClass('open');
     $('#navbar').toggleClass('navbar-col-show');
@@ -69,7 +71,8 @@ function parallaxEvent() {
     }
   };
   if (target.length > 0) {
-    listenScroll(parallax);
+    parallax();
+    $(window).scroll(parallax);
   }
 }
 
@@ -103,13 +106,13 @@ function scrollTopArrowEvent() {
   $(window).resize(setTopArrowPos);
   // 显示
   var headerHeight = $('#board').offset().top;
-  listenScroll(function() {
+  $(window).scroll(debounce(function() {
     var scrollHeight = document.body.scrollTop + document.documentElement.scrollTop;
     scrollDisplay = scrollHeight >= headerHeight;
     topArrow.css({
       'bottom': posDisplay && scrollDisplay ? '20px' : '-60px'
     });
-  });
+  }, 20));
   // 点击
   topArrow.on('click', function() {
     $('body,html').animate({

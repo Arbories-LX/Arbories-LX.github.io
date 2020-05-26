@@ -22,9 +22,6 @@
     img.srcset = src;
   }
 
-  // eslint-disable-next-line no-undef
-  var lazyLoader = new Debouncer(processImages);
-
   function processImages() {
     for (var i = 0; i < images.length; i++) {
       if (elementInViewport(images[i])) {
@@ -40,11 +37,22 @@
       }
     }
     if (images.length === 0) {
-      window.removeEventListener('scroll', lazyLoader, false);
+      window.removeEventListener('scroll', imageLazyLoader);
     }
   }
 
-  window.addEventListener('scroll', lazyLoader, false);
-  lazyLoader.handleEvent();
+  function throttle(method, context) {
+    clearTimeout(method.tId);
+    method.tId = setTimeout(function() {
+      method.call(context);
+    }, 100);
+  }
 
+  var imageLazyLoader = function() {
+    throttle(processImages, window);
+  };
+
+  processImages();
+
+  window.addEventListener('scroll', imageLazyLoader);
 })(window, document);
