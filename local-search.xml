@@ -13,7 +13,7 @@
     
     <categories>
       
-      <category>JDBC</category>
+      <category>MySQL</category>
       
     </categories>
     
@@ -38,7 +38,7 @@
     
     <categories>
       
-      <category>Servlet</category>
+      <category>Java</category>
       
     </categories>
     
@@ -61,18 +61,10 @@
     <content type="html"><![CDATA[<h1 id="一个新的开始"><a href="#一个新的开始" class="headerlink" title="一个新的开始"></a>一个新的开始</h1><h5 id="2020-年-4-月-12-日"><a href="#2020-年-4-月-12-日" class="headerlink" title="2020 年 4 月 12 日"></a>2020 年 4 月 12 日</h5><p>历经坎坷终于搭建好了属于自己的第一个网站（开心到上天.jpg），其中遇到了无数个小问题，电脑也差点被自己玩坏。</p><p><del>今天我在我的博客上写下了自己的第一篇文章</del></p><h6 id="先介绍一下这个网站："><a href="#先介绍一下这个网站：" class="headerlink" title="先介绍一下这个网站："></a>先介绍一下这个网站：</h6><p>本站使用 <strong>Github Pages</strong> 服务，使用 <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> 框架，主题为 <a href="https://hexo.fluid-dev.com/docs" target="_blank" rel="noopener">Fluid</a>,同时也很感谢<strong>Fluid</strong>的开发者，<a href="https://zkqiang.cn/" target="_blank" rel="noopener">张凯强♥强哥</a> 以及 Fluid 的相关开发人员。</p><p><img src="https://s1.ax1x.com/2020/05/06/YE3xts.png" srcset="/img/loading.gif" alt=""></p><h5 id="2020-年-5-月-4-日"><a href="#2020-年-5-月-4-日" class="headerlink" title="2020 年 5 月 4 日"></a>2020 年 5 月 4 日</h5><p>自己花了9元钱在<strong>阿里云</strong>上购买了自己的第一个域名 <strong><a href="https://www.zsuzhan.top/" target="_blank" rel="noopener">https://www.zsuzhan.top/</a></strong> 也就是本站的地址,当然也遇到了很多小麻烦，谁让我现在还是个小菜鸡呢~</p><p>搭建这个博客的初心就是想记录一下自己写的东西和一些学习感悟，当然如果我俩之间有着很大很大很大的缘分，你访问到了我的博客，我俩可以加一个<strong>wechat</strong>  二维码就在<a href="https://www.zsuzhan.top/about/" target="_blank" rel="noopener">“关于”</a>那一页，我非常喜欢结交朋友啦。</p><p>最后希望看到这篇文章的小伙伴，每天都可以开心快乐，为了自己的理想奋斗。</p><p>晚安♥♥♥</p><p><a href="https://www.bilibili.com/video/BV1FV411d7u7/" target="_blank" rel="noopener">这个是五四青年节B站的视频</a></p><p><img src="https://cdn.jsdelivr.net/gh/Arbories-LX/img-cdn/Yk1AgO.jpg" srcset="/img/loading.gif" alt=""></p>]]></content>
     
     
-    <categories>
-      
-      <category>开始</category>
-      
-    </categories>
-    
     
     <tags>
       
       <tag>Fluid</tag>
-      
-      <tag>First</tag>
       
     </tags>
     
