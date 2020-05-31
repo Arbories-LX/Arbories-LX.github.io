@@ -236,13 +236,23 @@
       <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
       <span>Fluid</span></a>
         <br>
-        <span>两个常用的壁纸网站👇</span></a>
-        <br>
-      <a href=" https://wallhaven.cc/" target="_blank" rel="nofollow noopener"><span>wallhaven  </span></a>
-      <i class="iconfont icon-pinterest-fill"></i>
-      <a href=" https://wallpaperhub.app/" target="_blank" rel="nofollow noopener"><span>  wallpaperhub</span></a>
+        <!--<span>两个常用的壁纸网站👇</span></a>-->
+      <a href=" https://wallhaven.cc/" target="_blank" rel="nofollow noopener"><span>Wallhaven </span></a>
+      <i class="iconfont icon-pinterest-fill"></i>&nbsp;&nbsp;
+      <a href=" https://wallpaperhub.app/" target="_blank" rel="nofollow noopener"><span>Wallpaperhub</span></a>
       <i class="iconfont icon-twitter-fill"></i>
-      
+     
+      <p><a id="rainbow" href=''>🌈 获取中...</a></p>
+      <script>
+        fetch('http://api.eatrice.top')
+          .then(response => response.json())
+          .then(data => {
+            var rainbow = document.getElementById('rainbow');
+            rainbow.innerHTML = data.Content;
+            rainbow.href = "https://rainbow.eatrice.top/?ID=" + data.ID;
+          })
+          .catch(console.error)
+        </script>
     </div>
     
 
