@@ -35,7 +35,7 @@ img[srcset] {
   padding: 0.45rem;
 }
 .hover-with-bg:hover {
-  background-color: #ebedef;
+  background-color: #f8f9fa;
   transition-duration: 0.2s;
   transition-timing-function: ease-in-out;
   border-radius: 0.15rem;
@@ -314,8 +314,12 @@ post-content strong {
   display: none;
   box-shadow: 0 0 20px -5px rgba(158,158,158,0.2);
 }
-a.beian-icp {
-  font-weight: 300;
+footer > div > div:not(:first-child) {
+  margin: 0.25rem 0;
+  font-size: 0.85rem;
+}
+.statistics > span:last-child {
+  margin: 0 0.35rem;
 }
 a.beian-police {
   position: relative;
@@ -334,7 +338,8 @@ a.beian-police img {
     display: none;
   }
 }
-sup > a::before {
+sup > a::before,
+.footnote-text::before {
   display: block;
   content: "";
   margin-top: -5rem;
@@ -342,7 +347,8 @@ sup > a::before {
   width: 1px;
   visibility: hidden;
 }
-sup > a::before {
+sup > a::before,
+.footnote-text::before {
   display: inline-block;
 }
 .footnote-item::before {
@@ -352,6 +358,23 @@ sup > a::before {
   height: 5rem;
   width: 1px;
   visibility: hidden;
+}
+.footnote-list ol {
+  list-style-type: none;
+  counter-reset: sectioncounter;
+  padding-left: 1em;
+  font-size: 0.9rem;
+}
+.footnote-list ol li:before {
+  font-family: "Helvetica Neue", monospace, "Monaco";
+  content: "[" counter(sectioncounter) "]";
+  counter-increment: sectioncounter;
+}
+.footnote-list ol li+li {
+  margin-top: 0.5rem;
+}
+.footnote-text {
+  padding-left: 0.5em;
 }
 @-moz-keyframes fadeInUp {
   from {
@@ -574,17 +597,8 @@ sup > a::before {
 .navbar .dropdown-item:hover {
   color: #1abc9c;
 }
-@supports (-webkit-backdrop-filter: blur(3px)) or (backdrop-filter: blur(3px)) {
-  .navbar .dropdown-collapse {
-    background: rgba(47,65,84,0.7);
-    -webkit-backdrop-filter: blur(3px);
-    backdrop-filter: blur(3px);
-  }
-}
-@supports not ((-webkit-backdrop-filter: blur(3px)) or (backdrop-filter: blur(3px))) {
-  .navbar .dropdown-collapse {
-    background: #2f4154;
-  }
+.navbar .dropdown-collapse {
+  background-color: #2f4154;
 }
 .navbar-custom {
   color: white;
@@ -592,29 +606,11 @@ sup > a::before {
 .navbar-custom a {
   color: white;
 }
-@supports (-webkit-backdrop-filter: blur(3px)) or (backdrop-filter: blur(3px)) {
-  .top-nav-collapse {
-    background: rgba(47,65,84,0.7);
-    -webkit-backdrop-filter: blur(3px);
-    backdrop-filter: blur(3px);
-  }
+.top-nav-collapse {
+  background-color: #2f4154;
 }
-@supports not ((-webkit-backdrop-filter: blur(3px)) or (backdrop-filter: blur(3px))) {
-  .top-nav-collapse {
-    background: #2f4154;
-  }
-}
-@supports (-webkit-backdrop-filter: blur(3px)) or (backdrop-filter: blur(3px)) {
-  .navbar-col-show {
-    background: rgba(47,65,84,0.7);
-    -webkit-backdrop-filter: blur(3px);
-    backdrop-filter: blur(3px);
-  }
-}
-@supports not ((-webkit-backdrop-filter: blur(3px)) or (backdrop-filter: blur(3px))) {
-  .navbar-col-show {
-    background: #2f4154;
-  }
+.navbar-col-show {
+  background-color: #2f4154;
 }
 @media (max-width: 767px) {
   .navbar {
@@ -659,7 +655,7 @@ sup > a::before {
   overflow: visible;
 }
 .markdown-body pre code {
-  font-size: 105%;
+  font-size: 85%;
   display: block;
   overflow-x: auto;
   padding: 0.5rem 0;
@@ -713,7 +709,7 @@ sup > a::before {
 }
 .pagination a:hover,
 .pagination .current {
-  background-color: #ebedef;
+  background-color: #f8f9fa;
 }
 .modal-dialog .modal-content {
   border: 0;
@@ -857,6 +853,10 @@ input[type=checkbox]:checked:after {
   width: 0.125rem;
   height: 0.875rem;
 }
+.list-group-item-action:focus,
+.list-group-item-action:hover {
+  background-color: #f8f9fa;
+}
 .index-card {
   margin-bottom: 2.5rem;
 }
@@ -968,6 +968,8 @@ h6::before {
 .post-prevnext .post-prev,
 .post-prevnext .post-next {
   display: flex;
+  padding-left: 0;
+  padding-right: 0;
 }
 .post-prevnext .post-prev i,
 .post-prevnext .post-next i {
@@ -1104,13 +1106,13 @@ h6::before {
 .mjx-char {
   line-height: 1;
 }
-mjx-container {
+.mjx-container {
   overflow-x: auto;
   overflow-y: hidden !important;
   padding: 0.5em 0;
 }
-mjx-container:focus,
-mjx-container svg:focus {
+.mjx-container:focus,
+.mjx-container svg:focus {
   outline: none;
 }
 @-moz-keyframes post-prev-anim {

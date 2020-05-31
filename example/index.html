@@ -17,10 +17,19 @@
   <meta name="description" content="">
   <meta name="author" content="Arbories 3a.">
   <meta name="keywords" content="">
-  <title>分类 - MySQL - Arbories_3a</title>
+  <title>example - Arbories_3a</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
@@ -142,7 +151,7 @@
 </nav>
 
     <div class="view intro-2" id="background" parallax=true
-         style="background: url('https://cdn.jsdelivr.net/gh/Arbories-LX/img-cdn/wallhaven-7315m3.jpg') no-repeat center center;
+         style="background: url('/img/default.png') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -171,22 +180,9 @@
               <div class="col-12 col-md-10 m-auto">
                 
 
-<div class="list-group">
-<!--  <p class="h4">共计 1 篇文章</p>-->
-  <hr>
-  
-    
-      
-      <p class="h5">2020</p>
-    
-    <a href="/2020/05/26/MySQL/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">MySql JDBC</span>
-      <span style="float: right;">05-26</span>
-    </a>
+<div class="page-content">
   
 </div>
-
-
 
               </div>
             </div>
@@ -303,7 +299,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "分类 - MySQL&nbsp;",
+        "example&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
@@ -317,6 +313,21 @@
   </script>
 
 
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
 
 
 
