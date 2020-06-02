@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>Tomcat bug</title>
+    <link href="/2020/06/02/tomcat/"/>
+    <url>/2020/06/02/tomcat/</url>
+    
+    <content type="html"><![CDATA[<h1 id="关于Tomcat-Address-Localhost报错的问题"><a href="#关于Tomcat-Address-Localhost报错的问题" class="headerlink" title="关于Tomcat Address Localhost报错的问题"></a>关于Tomcat Address Localhost报错的问题</h1><p>近期频繁使用Tomcat，今天运行的时候报错<strong>tomcat address localhost：1099 is already in use</strong></p><blockquote><p>表示1099端口已经被占用</p></blockquote><h3 id="解决方法："><a href="#解决方法：" class="headerlink" title="解决方法："></a>解决方法：</h3><ul><li><strong>管理员身份运行命令提示符，我获取更高的权限对系统进行设置</strong></li><li>输入<strong>netstat -ano|findstr 1099</strong></li><li>输入<strong>taskkill -f -pid 5904</strong></li></ul><p><img src="https://s1.ax1x.com/2020/06/02/tNuEes.png" srcset="/img/loading.gif" alt=""></p><h4 id="成功解决"><a href="#成功解决" class="headerlink" title="成功解决"></a>成功解决</h4>]]></content>
+    
+    
+    <categories>
+      
+      <category>Tomcat</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Tomcat</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>MySql JDBC</title>
     <link href="/2020/05/26/MySQL/"/>
     <url>/2020/05/26/MySQL/</url>
