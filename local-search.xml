@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>Java Web相关知识点整理</title>
+    <link href="/2020/06/29/javaweb/"/>
+    <url>/2020/06/29/javaweb/</url>
+    
+    <content type="html"><![CDATA[<h1 id="Request"><a href="#Request" class="headerlink" title="Request"></a>Request</h1><h3 id="一-、request对象和response对象"><a href="#一-、request对象和response对象" class="headerlink" title="一 、request对象和response对象"></a>一 、request对象和response对象</h3><p><strong>1</strong>. request对象和response对象的原理</p><ul><li>request和response对象是由服务器创建的。</li><li>request对象获取请求消息的，response对象设置响应消息。</li></ul><p><strong>2</strong>. requset功能</p><ul><li>获取请求消息数据<ul><li>获取请求方式：GET<pre><code class="hljs isbl"><span class="hljs-variable">String</span> <span class="hljs-function"><span class="hljs-title">getMethod</span>()</span></code></pre></li><li>获取虚拟目录<pre><code class="hljs isbl"><span class="hljs-variable">String</span> <span class="hljs-function"><span class="hljs-title">getContextPath</span>()</span></code></pre></li><li>获取Servlet路径<pre><code class="hljs isbl"><span class="hljs-variable">String</span> <span class="hljs-function"><span class="hljs-title">getServletPath</span>()</span></code></pre></li><li>获取请求URI<pre><code class="hljs isbl"><span class="hljs-variable">String</span> <span class="hljs-function"><span class="hljs-title">getRequestURI</span>()</span></code></pre></li></ul></li><li>获取请求头数据:通过请求头的名称获取请求头的值  <pre><code class="hljs delphi"><span class="hljs-keyword">String</span> getHeader(<span class="hljs-keyword">String</span> <span class="hljs-keyword">name</span>)</code></pre></li><li>其他功能<ul><li>获取请求参数的通用方式：不论是get还是post请求方式都可以使用下列方法来获取请求参数<pre><code class="hljs delphi"><span class="hljs-keyword">String</span> getParameter(<span class="hljs-keyword">String</span> <span class="hljs-keyword">name</span>):</code></pre>根据参数的名称获取参数值的数组</li><li>中文乱码<pre><code class="hljs abnf">request.setCharacterEncoding(<span class="hljs-string">"utf-8"</span>)<span class="hljs-comment">;</span></code></pre></li></ul></li><li>请求转发<ul><li>通过request对象请求转发对象：<pre><code class="hljs mipsasm">RequestDispatcher requestDispatcher = <span class="hljs-built_in">context</span>.getRequestDispatcher(<span class="hljs-string">"/gp"</span>)<span class="hljs-comment">; //转发的请求路径</span>requestDispatcher.forward(request,response)<span class="hljs-comment">; //调用forward实现请求转发；</span></code></pre><pre><code class="hljs less"><span class="hljs-selector-tag">context</span><span class="hljs-selector-class">.getRequestDispatcher</span>(<span class="hljs-string">"/gp"</span>)<span class="hljs-selector-class">.forward</span>(request,response);</code></pre></li><li>特点：</li></ul>  1.浏览器地址栏路径不发生变化<br>  2.只能转发到当前服务器内部资源中<br>  3.转发是一次请求</li><li>共享数据<ul><li>域对象：一个有作用范围的对象，可以在范围内共享数据</li><li>request域：代表一次请求范围，一般用于请求转发多个资源中共享数据</li><li>方法：<pre><code class="hljs dart"><span class="hljs-keyword">void</span> setAttribute(<span class="hljs-built_in">String</span> name,<span class="hljs-built_in">Object</span> obj):存储数据</code></pre><pre><code class="hljs delphi"><span class="hljs-keyword">Object</span> getAttitude(<span class="hljs-keyword">String</span> <span class="hljs-keyword">name</span>):通过键获取值</code></pre><pre><code class="hljs dart"><span class="hljs-keyword">void</span> removeAttribute(<span class="hljs-built_in">String</span> name):通过键移除键值对</code></pre></li><li>域对象：一个有作用范围的对象，可以在范围内共享数据<pre><code class="hljs isbl"><span class="hljs-variable">ServletContext</span> <span class="hljs-function"><span class="hljs-title">getServletContext</span>()</span></code></pre></li></ul></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>Java Web</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Request</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Tomcat bug</title>
     <link href="/2020/06/02/tomcat/"/>
     <url>/2020/06/02/tomcat/</url>
@@ -63,14 +88,14 @@
     
     <categories>
       
-      <category>Java</category>
+      <category>Java Web</category>
       
     </categories>
     
     
     <tags>
       
-      <tag>JavaWeb</tag>
+      <tag>Servlet</tag>
       
     </tags>
     

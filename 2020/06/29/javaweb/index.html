@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="Arbories 3a.">
   <meta name="keywords" content="">
-  <title>Tomcat bug - Arbories_3a</title>
+  <title>Java Web相关知识点整理 - Arbories_3a</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -164,8 +164,8 @@
               
   <div class="mt-3 post-meta">
     <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2020-06-02 19:46">
-      2020年6月2日 19:46:25
+    <time datetime="2020-06-29 20:38">
+      2020年6月29日 20:38:3
     </time>
   </div>
 
@@ -175,7 +175,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      90 字
+      380 字
     </span>
   
 
@@ -185,7 +185,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1
+      4
        分钟
     </span>
   
@@ -216,17 +216,45 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <h1 id="关于Tomcat-Address-Localhost报错的问题"><a href="#关于Tomcat-Address-Localhost报错的问题" class="headerlink" title="关于Tomcat Address Localhost报错的问题"></a>关于Tomcat Address Localhost报错的问题</h1><p>近期频繁使用Tomcat，今天运行的时候报错<strong>tomcat address localhost：1099 is already in use</strong></p>
-<blockquote>
-<p>表示1099端口已经被占用</p>
-</blockquote>
-<h3 id="解决方法："><a href="#解决方法：" class="headerlink" title="解决方法："></a>解决方法：</h3><ul>
-<li><strong>管理员身份运行命令提示符，我获取更高的权限对系统进行设置</strong></li>
-<li>输入<strong>netstat -ano|findstr 1099</strong></li>
-<li>输入<strong>taskkill -f -pid 5904</strong></li>
+              <h1 id="Request"><a href="#Request" class="headerlink" title="Request"></a>Request</h1><h3 id="一-、request对象和response对象"><a href="#一-、request对象和response对象" class="headerlink" title="一 、request对象和response对象"></a>一 、request对象和response对象</h3><p><strong>1</strong>. request对象和response对象的原理</p>
+<ul>
+<li>request和response对象是由服务器创建的。</li>
+<li>request对象获取请求消息的，response对象设置响应消息。</li>
 </ul>
-<p><img src="https://s1.ax1x.com/2020/06/02/tNuEes.png" srcset="/img/loading.gif" alt=""></p>
-<h4 id="成功解决"><a href="#成功解决" class="headerlink" title="成功解决"></a>成功解决</h4>
+<p><strong>2</strong>. requset功能</p>
+<ul>
+<li>获取请求消息数据<ul>
+<li>获取请求方式：GET<pre><code class="hljs isbl"><span class="hljs-variable">String</span> <span class="hljs-function"><span class="hljs-title">getMethod</span>()</span></code></pre></li>
+<li>获取虚拟目录<pre><code class="hljs isbl"><span class="hljs-variable">String</span> <span class="hljs-function"><span class="hljs-title">getContextPath</span>()</span></code></pre></li>
+<li>获取Servlet路径<pre><code class="hljs isbl"><span class="hljs-variable">String</span> <span class="hljs-function"><span class="hljs-title">getServletPath</span>()</span></code></pre></li>
+<li>获取请求URI<pre><code class="hljs isbl"><span class="hljs-variable">String</span> <span class="hljs-function"><span class="hljs-title">getRequestURI</span>()</span></code></pre></li>
+</ul>
+</li>
+<li>获取请求头数据:通过请求头的名称获取请求头的值  <pre><code class="hljs delphi"><span class="hljs-keyword">String</span> getHeader(<span class="hljs-keyword">String</span> <span class="hljs-keyword">name</span>)</code></pre></li>
+<li>其他功能<ul>
+<li>获取请求参数的通用方式：不论是get还是post请求方式都可以使用下列方法来获取请求参数<pre><code class="hljs delphi"><span class="hljs-keyword">String</span> getParameter(<span class="hljs-keyword">String</span> <span class="hljs-keyword">name</span>):</code></pre>
+根据参数的名称获取参数值的数组</li>
+<li>中文乱码<pre><code class="hljs abnf">request.setCharacterEncoding(<span class="hljs-string">"utf-8"</span>)<span class="hljs-comment">;</span></code></pre></li>
+</ul>
+</li>
+<li>请求转发<ul>
+<li>通过request对象请求转发对象：<pre><code class="hljs mipsasm">RequestDispatcher requestDispatcher = <span class="hljs-built_in">context</span>.getRequestDispatcher(<span class="hljs-string">"/gp"</span>)<span class="hljs-comment">; //转发的请求路径</span>
+requestDispatcher.forward(request,response)<span class="hljs-comment">; //调用forward实现请求转发；</span></code></pre>
+<pre><code class="hljs less"><span class="hljs-selector-tag">context</span><span class="hljs-selector-class">.getRequestDispatcher</span>(<span class="hljs-string">"/gp"</span>)<span class="hljs-selector-class">.forward</span>(request,response);</code></pre></li>
+<li>特点：</li>
+</ul>
+  1.浏览器地址栏路径不发生变化<br>  2.只能转发到当前服务器内部资源中<br>  3.转发是一次请求</li>
+<li>共享数据<ul>
+<li>域对象：一个有作用范围的对象，可以在范围内共享数据</li>
+<li>request域：代表一次请求范围，一般用于请求转发多个资源中共享数据</li>
+<li>方法：<pre><code class="hljs dart"><span class="hljs-keyword">void</span> setAttribute(<span class="hljs-built_in">String</span> name,<span class="hljs-built_in">Object</span> obj):存储数据</code></pre>
+<pre><code class="hljs delphi"><span class="hljs-keyword">Object</span> getAttitude(<span class="hljs-keyword">String</span> <span class="hljs-keyword">name</span>):通过键获取值</code></pre>
+<pre><code class="hljs dart"><span class="hljs-keyword">void</span> removeAttribute(<span class="hljs-built_in">String</span> name):通过键移除键值对</code></pre></li>
+<li>域对象：一个有作用范围的对象，可以在范围内共享数据<pre><code class="hljs isbl"><span class="hljs-variable">ServletContext</span> <span class="hljs-function"><span class="hljs-title">getServletContext</span>()</span></code></pre></li>
+</ul>
+</li>
+</ul>
+
             </article>
             <hr>
             <div>
@@ -235,7 +263,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/Tomcat/">Tomcat</a>
+                      <a class="hover-with-bg" href="/categories/Java-Web/">Java Web</a>
                     
                   </div>
                 
@@ -243,7 +271,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/Tomcat/">Tomcat</a>
+                      <a class="hover-with-bg" href="/tags/Request/">Request</a>
                     
                   </div>
                 
@@ -256,18 +284,12 @@
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/2020/06/29/javaweb/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Java Web相关知识点整理</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </div>
                   <div class="post-next col-6">
                     
                     
-                      <a href="/2020/05/26/MySQL/">
-                        <span class="hidden-mobile">MySql JDBC</span>
+                      <a href="/2020/06/02/tomcat/">
+                        <span class="hidden-mobile">Tomcat bug</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -422,7 +444,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "Tomcat bug&nbsp;",
+        "Java Web相关知识点整理&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
